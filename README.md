@@ -1,12 +1,51 @@
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
+# Near-Earth Asteroid Analysis
 
-Welcome,
+A comprehensive data analytics project analyzing Near-Earth Asteroids (NEAs) using ETL processes, statistical analysis, machine learning, and interactive dashboards.
 
-This is the Code Institute student template for the Data Analytics capstone project. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+## Project Overview
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+This project provides an in-depth analysis of Near-Earth Asteroids, including:
+- **ETL Pipeline** - Data collection, cleaning, and transformation
+- **Exploratory Data Analysis** - Statistical analysis and visualizations
+- **Machine Learning Models** - Predictive modelling for asteroid characteristics
+- **Power BI Dashboard** - Interactive dashboard with comprehensive visualizations
+
+## Project Documentation
+
+- **[PROJECT_PLAN.md](PROJECT_PLAN.md)** - Comprehensive project plan with all phases and tasks
+- **[GITHUB_ISSUES_TEMPLATES.md](GITHUB_ISSUES_TEMPLATES.md)** - Ready-to-use GitHub issue templates
+- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Quick reference guide for the project
+
+## Getting Started
+
+See the sections below for setup instructions.
+
+## Project Structure
+
+```
+Near-Earth-Asteroid-Analysis/
+├── inputs/
+│   └── datasets/
+│       ├── raw/              # Raw data from sources
+│       ├── cleaned/          # Cleaned data
+│       └── processed/        # Processed data for modelling
+├── outputs/
+│   ├── eda/
+│   │   ├── univariate/       # Univariate analysis plots
+│   │   └── multivariate/     # Multivariate analysis plots
+│   ├── visualizations/       # Advanced visualizations
+│   ├── models/               # Saved ML models
+│   ├── powerbi_data/         # Data exports for Power BI
+│   └── powerbi/              # Power BI files (.pbix)
+├── jupyter_notebooks/        # All analysis notebooks
+├── PROJECT_PLAN.md          # Detailed project plan
+├── GITHUB_ISSUES_TEMPLATES.md  # Issue templates
+├── QUICK_REFERENCE.md       # Quick reference guide
+├── README.md                # This file
+└── requirements.txt         # Python dependencies
+```
 
 ## How to use this repo
 
