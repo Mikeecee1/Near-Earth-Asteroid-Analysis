@@ -16,6 +16,7 @@ This project provides an in-depth analysis of Near-Earth Asteroids, including:
 
 - **[PROJECT_PLAN.md](PROJECT_PLAN.md)** - Comprehensive project plan with all phases and tasks
 - **[GITHUB_ISSUES_TEMPLATES.md](GITHUB_ISSUES_TEMPLATES.md)** - Ready-to-use GitHub issue templates
+- **[CREATING_ISSUES_GUIDE.md](CREATING_ISSUES_GUIDE.md)** - Step-by-step guide to create all GitHub issues
 - **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Quick reference guide for the project
 
 ## Getting Started
