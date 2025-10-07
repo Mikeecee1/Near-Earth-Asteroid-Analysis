@@ -14,19 +14,55 @@ Using publicly available data from NASA’s JPL Center for Near-Earth Object Stu
 * The dataset includes key attributes such as estimated diameter, relative velocity, miss distance, and absolute magnitude of over 27000 asteroids with 90000 observations.
 Additional features have been added (based upon the original data). For example number of observations per object, was engineered to capture tracking frequency and observation density.
 
+### Columns in `Data/Raw/neo.csv` (source file)
+
+- `id` — integer unique identifier for the NEO .
+- `name` — object name or designation (string). Comprises an identifier and the year first observed.
+- `est_diameter_min` — estimated minimum diameter (kilometres).
+- `est_diameter_max` — estimated maximum diameter (kilometres).
+- `relative_velocity` — relative approach velocity ( km/h).
+- `miss_distance` — miss distance at close approach.
+- `orbiting_body` — the body the object is approaching (`Earth`). 
+- `sentry_object` — boolean indicating whether the object is listed on the [Sentry Risk Table](https://cneos.jpl.nasa.gov/sentry/).
+- `absolute_magnitude` — absolute magnitude H (brightness; lower = brighter/larger).
+- `hazardous` — boolean flag for potentially hazardous status (True/False).
+
+#### Feature Engineered Columns
+
+
 
 
 ## Business Requirements
 
 The requirements of the project are to:
+
 * Identify potentially dangerous asteroids
+    - Detail: Use the hazard flag and derived metrics (size, miss distance, velocity) to identify objects potentially hazardous objects. 
+
 * Investigate which physical properties contribute to hazardous status
+    - Detail: Run hypothesis tests and simple predictive models to quantify how diameter, velocity and miss distance relate to the `hazardous` label. Include uncertainty estimates and effect sizes.
+    
 * Understanding these properties may help to mitigate the threats posed
+    - Detail: Summarise practical implications of the findings (e.g., which features most strongly drive risk scores) and note limitations for operational use.
+    
 
 Hazardous asteroids may:
-* Be a direct threat to earth if large enough
+* Be a direct threat to Earth if large enough
+    - Context: Large bodies with small miss distances present the highest theoretical risk; however, this project's size estimates are approximate and should be treated as indicative only.
+   
 * Disrupt communications and other satellites
+    - Context: Objects that intersect LEO/GEO-altitude orbits are of interest for satellite operators. 
+    
 * Be a threat to other near earth objects e.g. space telescopes
+    - Context: Secondary effects (debris, close passes) may pose risk to valuable space assets; this project only flags potential concerns for further study.
+    
+
+### Scope, audience, and disclaimer
+
+- Purpose: This repository is a small, educational training project intended to demonstrate data engineering, exploratory analysis, and basic predictive modelling techniques using an open NEO dataset. It is not intended for operational, commercial, or scientific decision-making.
+- Intended audience: students, data-science learners, and reviewers interested in reproducible analysis workflows.
+- Non-operational disclaimer: analyses, visualisations, and models produced here are exploratory. They are not validated for policy, emergency response, or mission planning. Any real-world interpretation should rely on authoritative sources (e.g., NASA/JPL CNEOS) and domain expert review.
+- Success criteria (project): reproducible ETL producing clean datasets, documented hypothesis tests and EDA, baseline model with evaluation metrics, and clear documentation (README, reports, ethics note).
 
 
 
@@ -96,9 +132,54 @@ The hypotheses for this project are as follows:
 
 
 ## Project Plan
-* Outline the high-level steps taken for the analysis.
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-* Why did you choose the research methodologies you used?
+
+
+This project plan maps work into clear phases, links each phase to the notebooks and files in this repository, and lists deliverables and acceptance criteria so progress can be tracked against the project board.
+
+### Phases & mapping
+
+- Phase 1 — Data collection & ETL
+    - Files / notebooks: `jupyter_notebooks/ETL.ipynb`, `Data/Raw/neo.csv`
+    - Tasks: confirm data provenance, standardise types and units, impute or document missing values, engineer base features, and write versioned processed outputs to `Data/Processed/`.
+    - Deliverables: `Data/Processed/neo_clean.parquetcsv`, `Data/Processed/neo_features.csv`.
+    - Acceptance criteria: raw file backed up, processed files produced, validation report created with row counts and missingness, and unit conversions documented.
+
+- Phase 2 — Exploratory Data Analysis (EDA)
+    - Files / notebooks: `jupyter_notebooks/Modelling.ipynb` (EDA sections) and `jupyter_notebooks/Visualisation.ipynb`
+    - Tasks: visualise distributions, test primary hypotheses (see Hypotheses section), and produce figures for the dashboard.
+    - Deliverables: EDA notebooks with plots, summary figures saved to `reports/figures/`, and a short findings document.
+    - Acceptance criteria: figures are reproducible from processed data and include captions, axes, and uncertainty where relevant.
+
+- Phase 3 — Modelling & validation
+    - Files / notebooks: `jupyter_notebooks/Modelling.ipynb`
+    - Tasks: build predictive models (logistic regression, random forest), evaluate via cross-validation, and produce model diagnostics and calibration plots.
+    - Deliverables: model notebook, saved model artefacts (if used), evaluation metrics and an entry in `reports/` explaining model limitations.
+    - Acceptance criteria: model reproducibility, stratified CV reported, AUC/PR metrics documented, and clear failure modes described.
+
+- Phase 4 — Dashboard & visual story
+    - Files / notebooks: `jupyter_notebooks/Visualisation.ipynb`, `dashboard/` (if created)
+    - Tasks: design user-facing visualisations to communicate key insights for technical and non-technical audiences, prepare narrative and captions.
+    - Deliverables: interactive dashboard or static figure set, README instructions for running the dashboard.
+    - Acceptance criteria: visuals annotated, accessible (alt text), and tested on a small sample dataset.
+
+- Phase 5 — Documentation & Deployment
+    - Files: `README.md`, `ETHICS.md` (optional), `requirements.txt`, `Procfile` for deployment
+    - Tasks: finalize documentation, add license, add ethics statement, and deploy (optional) to Heroku or other platform.
+    - Deliverables: polished README, LICENSE, ETHICS.md, and working deployment instructions.
+    - Acceptance criteria: repository is self-contained for a reviewer to reproduce the main result following the README.
+
+### Timeline & milestones
+
+- Milestone 1: ETL complete and processed datasets available (linked on project board).
+- Milestone 2: EDA visualisations and hypothesis tests complete.
+- Milestone 3: Baseline predictive model built and validated.
+- Milestone 4: Dashboard / visual story prepared and documented.
+- Milestone 5: Final report, ethics note, and deployment documentation completed.
+
+### QA & reproducibility checks
+
+
+
 
 ## The rationale to map the business requirements to the Data Visualisations
 * List your business requirements and a rationale to map them to the Data Visualisations
