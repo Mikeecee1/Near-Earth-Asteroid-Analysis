@@ -34,6 +34,8 @@ Additional features have been added (based upon the original data). For example 
 - `diameter_ratio`(max / min) -	Checks consistency of size estimates
 - `log_miss_distance`log(1 + miss_distance)	- Reduces skewness, improves interpretability
 - `velocity_distance_ratio`	(velocity / miss_distance) - Captures “risk intensity” (how fast and how close an asteroid passes Earth)
+- `relative_velocity`(mean) - average relative velocity across observations
+- `absolute_magnitude`(mean) - average magnitude across observation
 
 
 ## Business Requirements
