@@ -27,7 +27,7 @@ Additional features have been added (based upon the original data). For example 
 - `absolute_magnitude` — absolute magnitude H (brightness; lower = brighter/larger).
 - `hazardous` — boolean flag for potentially hazardous status (True/False).
 
-#### Feature Engineered Columns
+### Feature Engineered Columns
 
 
 
@@ -208,7 +208,72 @@ However, this project is an exploration of already existing and publicly availab
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?
-* Explain how the dashboard was designed to communicate complex data insights to different audiences. 
+* Explain how the dashboard was designed to communicate complex data insights to different audiences.
+
+### Dashboard wireframes (brief)
+
+Below are four concise wireframes for a compact dashboard. Each wireframe includes purpose, main widgets, data sources, interactions, and acceptance criteria. These are framework-agnostic and can be implemented with Plotly Dash, Streamlit, Voila, or a static report.
+
+1) Overview / Home
+     - Purpose: At-a-glance summary of dataset health and top hazards.
+     - Main widgets:
+         - Header with project title, data version, last ETL run timestamp, and a “Run ETL” button (if supported).
+         - KPI cards: Total NEOs, # Potentially Hazardous (PHA), Most recent close approach date, Average estimated diameter.
+         - Hazard ranking table (top 10) with sortable columns: `id`, `name`, `est_mean_diameter`, `miss_distance_min_km`, `relative_velocity_km_s`, `hazard_score`, `hazardous`.
+         - Small global map or scatter with points sized by diameter and coloured by hazard flag (hover shows quick stats).
+     - Interactions: Click a row in hazard table opens Object Detail pane; filter bar (hazardous only, diameter min, miss distance max).
+     - Data sources: `Data/Processed/neo_features.parquet`, `reports/hazard_ranking.csv`.
+     - Acceptance: KPIs update after ETL; top-10 table sorts and links to details; map displays same filtered subset.
+
+2) Object Detail (drill-down)
+     - Purpose: Show complete known history and metrics for a single NEO.
+     - Main widgets:
+         - Title with `name` and `id`, hazard flag and key stats (diameter range, mean, kinetic energy proxy).
+         - Time-series / timeline of close approaches (date vs miss_distance) with points sized by velocity.
+         - Table of approach events (date, miss_distance_km, relative_velocity_km_s, orbiting_body, sentry_object).
+         - Model explainability panel: feature importance for this object (if per-object prediction), and a short natural-language explanation.
+     - Interactions: Hover for per-event details; buttons to export object data (CSV) or add to a watchlist.
+     - Data sources: per-approach records (if available) or aggregated fields from `neo_features`.
+     - Acceptance: Object page shows at least 5 most recent approaches and an export button works.
+
+3) Models & Evaluation
+     - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
+     - Main widgets:
+         - Model summary card (type, train/test split, features used, date trained).
+         - Performance plots: ROC curve, Precision-Recall curve, confusion matrix, calibration plot.
+         - Feature importance bar chart (global) and partial dependence / ICE for top 3 features.
+         - Toggle to view model behaviour under alternate class-weighting or threshold.
+     - Interactions: Slider to adjust classification threshold and view resulting precision/recall; dropdown to switch model versions.
+     - Data sources: model outputs saved under `models/` or `reports/model_summary.md` and evaluation artifacts in `reports/`.
+     - Acceptance: AUC and PR-AUC values display, calibration plot present, and threshold slider updates confusion metrics live.
+
+4) Data & ETL status
+     - Purpose: Show ETL logs, data schema, data quality summaries and allow a limited admin view.
+     - Main widgets:
+         - ETL status panel with last run time, row counts for raw vs processed, and a link to `reports/data_validation_report.md`.
+         - Schema viewer: column names, types, and example values (linked to `Data/Raw/neo.csv`).
+         - Data quality charts: missingness heatmap, distributions for key fields (`est_mean_diameter`, `miss_distance_km`, `relative_velocity_km_s`).
+         - Quick actions: Re-run ETL, regenerate features, export processed dataset.
+     - Interactions: Click a column in schema viewer to highlight its distribution and missingness; download buttons for processed assets.
+     - Acceptance: ETL status shows correct file timestamps; schema viewer matches `Data/Processed/neo_clean.parquet`.
+
+Layout & design notes
+- Sidebar filter panel (persistent): global filters for date range, hazard flag, diameter min/max, miss distance threshold, and observation count. Filters affect all pages.
+- Responsiveness: On mobile, stack KPI cards and convert tables to scrollable lists; maps collapse to summary charts.
+- Accessibility: All charts include descriptive captions and alt text; colour palettes are colourblind-safe; provide high-contrast mode.
+- Exports & sharing: Each page supports exporting current view as CSV and saving figures as PNG/SVG; include a “Permalink” or copyable filter state to reproduce a view.
+
+Implementation hints
+- Start with static visual mockups in `jupyter_notebooks/Visualisation.ipynb` then port to an interactive framework as needed.
+- Save figure assets to `reports/figures/` so README can embed example images for project demos.
+- Keep heavy computations (model training, ETL) offline or behind buttons that warn users about compute/time costs.
+
+Acceptance criteria for dashboard
+- All pages load within acceptable time for a sample dataset (e.g., <3s for KPIs and top-10 table).
+- All interactive controls (filters, threshold slider, export) produce consistent, reproducible outputs.
+- Visuals include axis labels, units, legends, and short captions explaining takeaways.
+
+If you'd like, I can convert any wireframe above into a simple static mockup (PNG) and add it to `reports/figures/` and the README.
 
 ## Unfixed Bugs
 * Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
