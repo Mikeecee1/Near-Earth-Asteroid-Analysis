@@ -52,7 +52,7 @@ Hazardous asteroids may:
    
 * Disrupt communications and other satellites
     - Context: Objects that intersect LEO/GEO-altitude orbits are of interest for satellite operators. 
-    
+
 * Be a threat to other near earth objects e.g. space telescopes
     - Context: Secondary effects (debris, close passes) may pose risk to valuable space assets; this project only flags potential concerns for further study.
     
@@ -102,7 +102,7 @@ The hypotheses for this project are as follows:
             1. Train a multivariate classifier (logistic regression, random forest, or XGBoost) using those features.
             2. Use cross-validation and report AUC, precision, recall, and calibration (reliability plot).
             3. Run ablation: compare model using all three vs models using subsets 
-        * **Supportive result**: upportive result: Multivariate model achieves substantially higher AUC (e.g., >0.80 if baseline is ~0.5–0.6) and ablation shows each feature contributes measurable lift.
+        * **Supportive result**: Multivariate model achieves substantially higher AUC (e.g., >0.80 if baseline is ~0.5–0.6) and ablation shows each feature contributes measurable lift.
 
 * #### **Observational Hypotheses** 🔭
     * NEOs with more recorded **observations** tend to be closer and larger.
@@ -176,7 +176,12 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Milestone 4: Dashboard / visual story prepared and documented.
 - Milestone 5: Final report, ethics note, and deployment documentation completed.
 
-### QA & reproducibility checks
+### Glossary
+
+* **neo** - near earth object
+* **h** - The absolute magnitude (intrinsic brightness) of an object (Inverted scale)
+* **GEO** -  Geostationary Equatorial Orbit
+* **LEO** - Low Earth Orbit
 
 
 
