@@ -33,7 +33,7 @@ Hazardous asteroids may:
 ## **Hypothesis and how to validate?**
 
 The hypotheses for this project are as follows:
-* **Physical and Predictive Hypotheses** 🚀
+* #### **Physical and Predictive Hypotheses** 🚀
     * **Larger asteroids** (greater estimated diameters) are more likely to be classified as hazardous.
         * **Validation**
             1. Compare diameter distributions between hazardous vs non-hazardous objects with a boxplot / violin plot.
@@ -68,7 +68,7 @@ The hypotheses for this project are as follows:
             3. Run ablation: compare model using all three vs models using subsets 
         * **Supportive result**: upportive result: Multivariate model achieves substantially higher AUC (e.g., >0.80 if baseline is ~0.5–0.6) and ablation shows each feature contributes measurable lift.
 
-*  **Observational Hypotheses** 🔭
+* #### **Observational Hypotheses** 🔭
     * NEOs with more recorded **observations** tend to be closer and larger.
         * **Validation**
             1. Scatter plots: observation_count vs miss_distance and observation_count vs diameter (use log scales).
@@ -77,7 +77,7 @@ The hypotheses for this project are as follows:
         * **Supportive result**: Negative Spearman for observation_count vs miss_distance, positive Spearman vs diameter (both significant).
 
     * **Potentially hazardous asteroids** are observed more frequently due to higher monitoring priority.
-        * * **Validation**
+        * **Validation**
             1. Compare observation_count distributions by hazard status (boxplot/histogram).
             2. Mann–Whitney U / t-test to check difference.
             3. Poisson or negative binomial regression: observation_count ~ is_hazardous + controls (e.g., discovery_year) to estimate incidence rate ratio..
