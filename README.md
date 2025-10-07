@@ -29,7 +29,11 @@ Additional features have been added (based upon the original data). For example 
 
 ### Feature Engineered Columns
 
-
+- `est_diameter_mean`(min + max) / 2 -	Represents the best single-value estimate of asteroid size
+- `diameter_range`(max − min) - Indicates uncertainty or shape variability
+- `diameter_ratio`(max / min) -	Checks consistency of size estimates
+- `log_miss_distance`log(1 + miss_distance)	- Reduces skewness, improves interpretability
+- `velocity_distance_ratio`	(velocity / miss_distance) - Captures “risk intensity” (how fast and how close an asteroid passes Earth)
 
 
 ## Business Requirements
@@ -141,7 +145,7 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Phase 1 — Data collection & ETL
     - Files / notebooks: `jupyter_notebooks/ETL.ipynb`, `Data/Raw/neo.csv`
     - Tasks: confirm data provenance, standardise types and units, impute or document missing values, engineer base features, and write versioned processed outputs to `Data/Processed/`.
-    - Deliverables: `Data/Processed/neo_clean.parquetcsv`, `Data/Processed/neo_features.csv`.
+    - Deliverables: `Data/Processed/neo_clean.csv`, `Data/Processed/neo_features.csv`.
     - Acceptance criteria: raw file backed up, processed files produced, validation report created with row counts and missingness, and unit conversions documented.
 
 - Phase 2 — Exploratory Data Analysis (EDA)
