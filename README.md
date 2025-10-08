@@ -31,11 +31,53 @@ Additional features have been added (based upon the original data). For example 
 
 - `est_diameter_mean`(min + max) / 2 -	Represents the best single-value estimate of asteroid size
 - `diameter_range`(max − min) - Indicates uncertainty or shape variability
-- `diameter_ratio`(max / min) -	Checks consistency of size estimates
-- `log_miss_distance`log(1 + miss_distance)	- Reduces skewness, improves interpretability
-- `velocity_distance_ratio`	(velocity / miss_distance) - Captures “risk intensity” (how fast and how close an asteroid passes Earth)
 - `relative_velocity`(mean) - average relative velocity across observations
 - `absolute_magnitude`(mean) - average magnitude across observations
+- `observations` - aggregated for each object (range 1-43)
+
+### Log-transformed columns (added to `Data/Processed/features.csv`)
+
+To stabilise variance and reduce heavy right-skew in several distance/size/velocity columns I added safe, non-destructive log transforms in the processed features file. 
+- `est_diameter_min_log1p`, `est_diameter_max_log1p` — log1p of original diameter bounds (km). Useful for plotting and linear-model inputs.
+- `est_diameter_mean_log1p`, `est_diameter_range_log1p` — log1p of the derived mean and range of diameter; compresses extreme values and reduces influence of large outliers.
+- `relative_velocity_mean_log1p` — log1p of average relative approach velocity; helps visualisation and models when velocity varies across orders of magnitude.
+- `miss_distance_mean_log1p`, `miss_distance_min_log1p` — log1p of miss distances to compress the very large distance scale and reveal structure at smaller scales.
+
+- These transformed columns are kept alongside the originals so as to choose the most appropriate representation for modelling or visualisation. 
+
+- All transformations are documented in `jupyter_notebooks/ETL.ipynb` so the pipeline is reproducible and auditable.
+
+### saved datasets & columns
+
+**Observations (observations.csv)**
+* name
+* est_diameter_min
+* est_diameter_max
+* relative_velocity
+* miss_distance
+* absolute_magnitude
+* hazardous
+* observations
+
+**Features (features.csv)**
+* name
+* est_diameter_min
+* est_diameter_max
+* relative_velocity_mean
+* miss_distance_mean
+* miss_distance_min
+* absolute_magnitude_mean
+* hazardous
+* observations
+* est_diameter_range
+* est_diameter_mean
+* est_diameter_min_log1p
+* est_diameter_max_log1p
+* est_diameter_mean_log1p
+* est_diameter_range_log1p
+* relative_velocity_mean_log1p
+* miss_distance_mean_log1p
+* miss_distance_min_log1p*
 
 
 ## Business Requirements
@@ -43,7 +85,7 @@ Additional features have been added (based upon the original data). For example 
 The requirements of the project are to:
 
 * Identify potentially dangerous asteroids
-    - Detail: Use the hazard flag and derived metrics (size, miss distance, velocity) to identify objects potentially hazardous objects. 
+    - Detail: Use the hazard flag and derived metrics (size, miss distance, velocity) to identify potentially hazardous objects. 
 
 * Investigate which physical properties contribute to hazardous status
     - Detail: Run hypothesis tests and simple predictive models to quantify how diameter, velocity and miss distance relate to the `hazardous` label. Include uncertainty estimates and effect sizes.
