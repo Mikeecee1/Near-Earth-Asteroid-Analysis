@@ -34,6 +34,7 @@ Additional features have been added (based upon the original data). For example 
 - `relative_velocity`(mean) - average relative velocity across observations
 - `absolute_magnitude`(mean) - average magnitude across observations
 - `observations` - aggregated for each object (range 1-43)
+- `hazardous_enc` - encoded hazardous status (1 for True, 0 for False)
 
 ### Log-transformed columns (added to `Data/Processed/features.csv`)
 
@@ -78,6 +79,7 @@ To stabilise variance and reduce heavy right-skew in several distance/size/veloc
 * relative_velocity_mean_log1p
 * miss_distance_mean_log1p
 * miss_distance_min_log1p*
+* hazardous_enc
 
 
 ## Business Requirements
