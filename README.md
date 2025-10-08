@@ -213,9 +213,9 @@ This project plan maps work into clear phases, links each phase to the notebooks
     - Acceptance criteria: visuals annotated, accessible (alt text), and tested on a small sample dataset.
 
 - Phase 5 — Documentation & Deployment
-    - Files: `README.md`, `ETHICS.md` (optional), `requirements.txt`, `Procfile` for deployment
-    - Tasks: finalize documentation, add license, add ethics statement, and deploy (optional) to Heroku or other platform.
-    - Deliverables: polished README, LICENSE, ETHICS.md, and working deployment instructions.
+    - Files: `README.md`, Jupyter Notebooks (`ETL.ipynb`,`Visualisation.ipynb`,`Modelling.ipynb`) and a dashboard  for deployment
+    - Tasks: finalize documentation and deploy (optional) to Heroku or other platform.
+    - Deliverables: polished README  and working deployment instructions.
     - Acceptance criteria: repository is self-contained for a reviewer to reproduce the main result following the README.
 
 ### Timeline & milestones
@@ -226,12 +226,14 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Milestone 4: Dashboard / visual story prepared and documented.
 - Milestone 5: Final report, ethics note, and deployment documentation completed.
 
-### Glossary
+## Glossary
 
-* **neo** - near earth object
+* **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
 * **h** - The absolute magnitude (intrinsic brightness) of an object (Inverted scale)
 * **GEO** -  Geostationary Equatorial Orbit
 * **LEO** - Low Earth Orbit
+* **AU** - Astronomical Unit - based upon the earth's average distance from the sun (roughly 150m km)
+
 
 
 
