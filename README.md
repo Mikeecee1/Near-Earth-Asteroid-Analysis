@@ -155,7 +155,7 @@ The hypotheses for this project are as follows:
         * **Supportive result**: Multivariate model achieves substantially higher AUC (e.g., >0.80 if baseline is ~0.5–0.6) and ablation shows each feature contributes measurable lift.
 
 * #### **Observational Hypotheses** 🔭
-    * NEOs with more recorded **observations** tend to be closer and larger.
+    * NEOs with more recorded **observations** tend to be closer and larger or brighter.
         * **Validation**
             1. Scatter plots: observation_count vs miss_distance and observation_count vs diameter (use log scales).
             2. Compute Spearman correlation (robust to nonlinearity) for observation_count with miss_distance and with diameter.
@@ -168,13 +168,6 @@ The hypotheses for this project are as follows:
             2. Mann–Whitney U / t-test to check difference.
             3. Poisson or negative binomial regression: observation_count ~ is_hazardous + controls (e.g., discovery_year) to estimate incidence rate ratio..
         * **Supportive result**: Hazardous objects have higher median observation counts and hazard indicator has a positive, significant rate ratio.
-
-    * There is a positive correlation between the number of **observations** and an asteroid’s **brightness** or **size**.
-        * **Validation**
-            1. Calculate Spearman correlations for observation_count vs H and observation_count vs diameter.
-            2. Visualize with binned summaries (median diameter per log observation_count bin).
-            3. 
-        * **Supportive result**: Positive correlation with diameter and negative correlation with H (remembering H scale), both significant.
 
 
     * (*Note: H = Absolute Magnitude, scale direction: lower H = brighter/larger* )
