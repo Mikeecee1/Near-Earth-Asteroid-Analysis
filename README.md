@@ -134,7 +134,7 @@ The hypotheses for this project are as follows:
             3. Logistic regression
         * **Supportive result**: Hazardous asteroids concentrate at smaller miss distances (statistically significant) and miss_distance has a negative, significant logistic coefficient.
 
-    * **Higher relative velocities** correlate with greater hazard potential due to increased impact energy.
+    * **Higher relative velocities** correlate with greater hazard potential (due to increased impact energy).
         * **Validation**
             1. Plot velocity distributions by hazard status.
             2. Statistical test (Mann–Whitney U / t-test).
