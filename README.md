@@ -170,8 +170,6 @@ The hypotheses for this project are as follows:
         * **Supportive result**: Hazardous objects have higher median observation counts and hazard indicator has a positive, significant rate ratio.
 
 
-    * (*Note: H = Absolute Magnitude, scale direction: lower H = brighter/larger* )
-
 
 
 ## Project Plan
@@ -222,11 +220,10 @@ This project plan maps work into clear phases, links each phase to the notebooks
 ## Glossary
 
 * **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
-* **h** - The absolute magnitude (intrinsic brightness) of an object (Inverted scale)
+* **h** -  Absolute Magnitude, scale direction: lower H = brighter/larger
 * **GEO** -  Geostationary Equatorial Orbit
 * **LEO** - Low Earth Orbit
 * **AU** - Astronomical Unit - based upon the earth's average distance from the sun (roughly 150m km)
-
 
 
 
