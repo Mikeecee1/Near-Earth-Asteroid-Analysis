@@ -11,3 +11,5 @@ kaggle.json
 .venv/
 feature_suggestions.md
 /reports/figures/
+feature_handling_diameter_miss_distance.md
+temp.txt

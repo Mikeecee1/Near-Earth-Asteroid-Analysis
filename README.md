@@ -182,30 +182,30 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Phase 1 — Data collection & ETL
     - Files / notebooks: `jupyter_notebooks/ETL.ipynb`, `Data/Raw/neo.csv`
     - Tasks: confirm data provenance, standardise types and units, impute or document missing values, engineer base features, and write versioned processed outputs to `Data/Processed/`.
-    - Deliverables: `Data/Processed/neo_clean.csv`, `Data/Processed/neo_features.csv`.
-    - Acceptance criteria: raw file backed up, processed files produced, validation report created with row counts and missingness, and unit conversions documented.
+    - Deliverables: `Data/Processed/neo_clean.csv`, `Data/Processed/features.csv`.
+    - Acceptance criteria: raw file backed up, processed files produced.
 
 - Phase 2 — Exploratory Data Analysis (EDA)
-    - Files / notebooks: `jupyter_notebooks/Modelling.ipynb` (EDA sections) and `jupyter_notebooks/Visualisation.ipynb`
+    - Files / notebooks:  `Jupyter_notebooks/Visualisation.ipynb` (EDA & Visualisations/statistical tests)
     - Tasks: visualise distributions, test primary hypotheses (see Hypotheses section), and produce figures for the dashboard.
-    - Deliverables: EDA notebooks with plots, summary figures saved to `reports/figures/`, and a short findings document.
+    - Deliverables: EDA notebooks with plots, summary figures saved to  and a short findings section.
     - Acceptance criteria: figures are reproducible from processed data and include captions, axes, and uncertainty where relevant.
 
 - Phase 3 — Modelling & validation
     - Files / notebooks: `jupyter_notebooks/Modelling.ipynb`
     - Tasks: build predictive models (logistic regression, random forest), evaluate via cross-validation, and produce model diagnostics and calibration plots.
-    - Deliverables: model notebook, saved model artefacts (if used), evaluation metrics and an entry in `reports/` explaining model limitations.
-    - Acceptance criteria: model reproducibility, stratified CV reported, AUC/PR metrics documented, and clear failure modes described.
+    - Deliverables: model notebook, evaluation metrics and an explanation of  model limitations.
+    - Acceptance criteria: model reproducibility, stratified CV reported.
 
 - Phase 4 — Dashboard & visual story
     - Files / notebooks: `jupyter_notebooks/Visualisation.ipynb`, `dashboard/` (if created)
     - Tasks: design user-facing visualisations to communicate key insights for technical and non-technical audiences, prepare narrative and captions.
     - Deliverables: interactive dashboard or static figure set, README instructions for running the dashboard.
-    - Acceptance criteria: visuals annotated, accessible (alt text), and tested on a small sample dataset.
+    - Acceptance criteria: visuals annotated, accessible (alt text), and tested.
 
 - Phase 5 — Documentation & Deployment
     - Files: `README.md`, Jupyter Notebooks (`ETL.ipynb`,`Visualisation.ipynb`,`Modelling.ipynb`) and a dashboard  for deployment
-    - Tasks: finalize documentation and deploy (optional) to Heroku or other platform.
+    - Tasks: finalize documentation and deploy (optional) to Heroku/ PowerBI or other platform.
     - Deliverables: polished README  and working deployment instructions.
     - Acceptance criteria: repository is self-contained for a reviewer to reproduce the main result following the README.
 
@@ -257,25 +257,44 @@ However, this project is an exploration of already existing and publicly availab
 Below are four concise wireframes for a compact dashboard. Each wireframe includes purpose, main widgets, data sources, interactions, and acceptance criteria. These are framework-agnostic and can be implemented with Plotly Dash, Streamlit, Voila, or a static report.
 
 1) Overview / Home
-     - Purpose: At-a-glance summary of dataset.
+
+<img src="Data/images/Dashboard1.png" alt="Interesting asteroids" width="640" height="400" />
+
+     - Purpose: At-a-glance summary of dataset. ()
      - Main widgets:
          - Header with project title.
          - KPI cards: Total NEOs, # Potentially Hazardous (PHA), Average estimated diameter, closest approaches.
-         - Hazard ranking table (top 10) with sortable columns: `id`, `name`, `est_mean_diameter`, `miss_distance_min_km`, `relative_velocity_km_s`, `hazardous`.
-         - Small global map or scatter with points sized by diameter and coloured by hazard flag (hover shows quick stats).
-     - Interactions: Click a row in hazard table opens Object Detail pane; filter bar (hazardous only, diameter min, miss distance max).
+     - Interactions: Click a row in to filter for different parameters.
      
 
 2) Object Detail (drill-down)
-     - Purpose: Show complete known history and metrics for a single NEO.
+
+<img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="640" height="400" />
+
+     - Purpose: Show complete known history and metrics for intersting NEOs.
      - Main widgets:
          - Title with `name` and `id`, hazard flag and key stats (diameter range, mean, kinetic energy proxy).
          - Model explainability panel: feature importance for this object (if per-object prediction), and a short natural-language explanation.
-     - Interactions: Hover for per-event details;
-     - Data sources: per-approach records (if available) or aggregated fields from `neo_features`.
+     - Interactions: Hover for per-event details, select button to toggle between fastest, largest etc;
+     - Data sources:`features.csv` & `observations.csv`.
      
+3) Hazardous Asteroids
 
-3) Models & Evaluation
+<img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="640" height="400" />
+
+     - Purpose: Diplay key stats re hazardous asteroids.
+     - Main widgets:
+         - Summary - key stats.
+         - Largest, closest, fastest hazards - density at different sizes
+         - Year first detected - timeline (extractable from name field)
+         - average stats for hazardoud
+     - Interactions: Slider to adjust hazardous first seen by year (to be decided). 
+
+
+4) Models & Evaluation
+
+<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="600" height="400" />
+
      - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
      - Main widgets:
          - Model summary card (type, train/test split, features used, date trained).
@@ -285,20 +304,20 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
      - Interactions: Slider to adjust classification threshold and view resulting precision/recall; dropdown to switch model versions.
      
      
-4) Data & ETL status
-     - Purpose: Show ETL logs, data schema, data quality summaries and allow a limited admin view.
+5) Storyboard Dash
+     - Purpose: Give non technical overview.
      - Main widgets:
-         - ETL status panel with last run time, row counts for raw vs processed
-         - Schema viewer: column names, types, and example values (linked to `Data/Raw/neo.csv`).
-         - Data quality charts: missingness heatmap, distributions for key fields (`est_mean_diameter`, `miss_distance_km`, `relative_velocity_km_s`).
-         - Quick actions: Re-run ETL, regenerate features, export processed dataset.
-     - Interactions: Click a column in schema viewer to highlight its distribution and missingness; download buttons for processed assets.
+         - Yet to be decided
      
 
 Layout & design notes
-- Sidebar filter panel (persistent): global filters for date range, hazard flag, diameter min/max, miss distance threshold, and observation count. Filters affect all pages.
-- Responsiveness: On mobile, stack KPI cards and convert tables to scrollable lists; maps collapse to summary charts.
-- Accessibility: All charts include descriptive captions and alt text; colour palettes are colourblind-safe; provide high-contrast mode.
+
+<img src="Data/images/Dashboard_colours.png" alt="Design scheme" width="400" height="400" />
+
+- To be decided
+- Colour Scheme to match theme - dark background, orange for hazard, yellow for stats etc.
+
+(Note: Wireframe images created by chatGpt with detailed prompts)
 
 
 
