@@ -217,6 +217,40 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Milestone 4: Dashboard / visual story prepared and documented.
 - Milestone 5: Final report, ethics note, and deployment documentation completed.
 
+## Notebook Description
+
+Below are concise objectives for the Jupyter notebooks in this repository. Notebooks are listed in order to show workflow.
+
+- 1. `jupyter_notebooks/ETL.ipynb`
+    - Purpose: load raw observation-level data, standardise types/units, and produce object-level dataset used by downstream analysis.
+    - Key steps:
+        - Read `Data/Raw/neo.csv`, validate schema and units.
+        - Clean, evaluate numeric types, and aggregate observations to object-level features.
+        - Add non-destructive transforms (log1p columns) and export `Data/Processed/features.csv` and `Data/Processed/observations.csv`.
+    - Outputs: processed CSVs, simple data-quality diagnostics, and ETL provenance notes.
+
+- 2. `jupyter_notebooks/Visualisation.ipynb`
+    - Purpose: perform focused exploratory data analysis and statistical tests that validate the project hypotheses and generate visuals related to hypothesis/ project requirements.
+    - Key steps:
+        - Load `Data/Processed/features.csv` and reproduce summary statistics.
+        - Produce distribution plots (raw + log), box/violin comparisons by `hazardous`, correlation heatmaps and hypothesis tests (e.g., Mann–Whitney U).
+    - Outputs: EDA figures, hypothesis test tables, and a short findings summary.
+    
+ - 3. `jupyter_notebooks/Modelling.ipynb`
+    - Key Steps:
+        - Create a dataset ready for ML modelling and the dashboard by filtering and rebalancing observations, and by creating derived/binned classes for very skewed features.
+        - Remove very small non-hazardous asteroids, introduce binned classes for diameter/proximity/velocity where useful, and save the model-ready dataset.
+    - Inputs:
+        - `Data/Processed/features.csv` (with guidance from the Visualisation notebook conclusions); notes on thresholds/bins and any ETL adjustments.
+    - Outputs:
+        - A model-ready dataset (saved as `Data/Processed/features_model.csv` — referenced in notebook as `features_modelled.csv`), new binned/class features for key variables, and brief diagnostics showing improved balance for modelling.
+        - Note: Originally intended to do ML Modelling in this notebook, but decided to move to new notebook for clarity (see below)
+
+ - 4. `jupyter_notebooks/ML_Modelling.ipynb`
+
+- 
+
+
 ## Glossary
 
 * **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
