@@ -171,7 +171,6 @@ The hypotheses for this project are as follows:
 
 
 
-
 ## Project Plan
 
 
@@ -247,8 +246,12 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
         - Note: Originally intended to do ML Modelling in this notebook, but decided to move to new notebook for clarity (see below)
 
  - 4. `jupyter_notebooks/ML_Modelling.ipynb`
+    - Purpose: train and evaluate tree‑based classifiers (Random Forest, Decision Tree, Extra Trees) to predict hazardous status using the model‑ready dataset.
+    - Inputs: `Data/Processed/features_model.csv` (binned classes and selected features from `Modelling.ipynb`).
+    - Key steps: build pipelines with imputation and ordinal encoding, run baseline training, evaluate with accuracy/ROC‑AUC/PR‑AUC, and perform GridSearchCV tuned for recall.
+    - Outputs: comparison table of models, confusion matrices, tuned model pipelines, feature‑importance summaries and plots.
+    - Notes: Grid search can be long-running; notebook emphasises recall (safety‑first) and documents reproducibility steps (working directory and seed).
 
-- 
 
 
 ## Glossary
@@ -392,9 +395,6 @@ Layout & design notes
 
 ### Content 
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
 
 ### Media
 
