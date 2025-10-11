@@ -258,6 +258,8 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
 * **GEO** -  Geostationary Equatorial Orbit
 * **LEO** - Low Earth Orbit
 * **AU** - Astronomical Unit - based upon the earth's average distance from the sun (roughly 150m km)
+* **pha** - Potentially Hazardous Asteroid
+* **albedo** - A measure of reflectivity - asteroids are often classified using this.
 
 
 
