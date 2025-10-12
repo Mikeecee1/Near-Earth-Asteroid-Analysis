@@ -287,8 +287,10 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 </p></br>
 <p>
 <img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="400" height="300" />
-<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="400" height="300" />
+<img src="Data/images/Velocity_wireframe.png" alt="Models & Evaluation" width="400" height="300" />
 </p></br>
+
+
 
 #### Colour Guide/ Design Guide
 
