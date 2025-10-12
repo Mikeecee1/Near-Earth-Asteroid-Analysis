@@ -252,16 +252,6 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
 
 
 
-## Glossary
-
-* **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
-* **h** -  Absolute Magnitude, scale direction: lower H = brighter/larger
-* **GEO** -  Geostationary Equatorial Orbit
-* **LEO** - Low Earth Orbit
-* **AU** - Astronomical Unit - based upon the earth's average distance from the sun (roughly 150m km)
-* **pha** - Potentially Hazardous Asteroid
-* **albedo** - A measure of reflectivity - asteroids are often classified using this.
-
 
 
 
@@ -293,20 +283,36 @@ However, this project is an exploration of already existing and publicly availab
 
 Below are four concise wireframes for a compact dashboard. Each wireframe includes purpose, main widgets, data sources, interactions, and acceptance criteria. These are framework-agnostic and can be implemented with Plotly Dash, Streamlit, Voila, or a static report.
 
-1) Overview / Home
+1) **Overview / Home**
 
-<img src="Data/images/Dashboard1.png" alt="Interesting asteroids" width="640" height="400" />
+
+**Dashboard 1**
+
+---
+
+![Dashboard 1](Data/images/Dashboard_Overview.png)
+
+<img src="https://raw.githubusercontent.com/Mikeecee1/Near-Earth-Asteroid-Analysis/main/Data/images/Dashboard_Overview.png" alt="Overview Dashboard" />
+
+---
 
     - Purpose: At-a-glance summary of the dataset.
      - Main widgets:
          - Header with project title.
-         - KPI cards: Total NEOs, # Potentially Hazardous (PHA), Average estimated diameter, closest approaches.
+         - KPI cards: Total Observations, Total NEOs, Potentially Hazardous (PHA), Hazardous Asteroids
+    - Charts 
+        - Pie Chart showing diameter distributions
+        - Scatter plot with sliders showing close approaches and diameter
     - Interactions: Click a row to filter for different parameters.
+        - Clicking Pie chart segment changes KPI for hazardous asteroids
+        - Scatter plot has sliders to zoom in for close approaches and diameter
+        - Scatter plot has hover data shows asteroid statistics.
+        (varies from wireframe)
      
 
 2) Object Detail (drill-down)
 
-<img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="640" height="400" />
+
 
     - Purpose: Show complete known history and metrics for interesting NEOs.
      - Main widgets:
@@ -317,7 +323,7 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
      
 3) Hazardous Asteroids
 
-<img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="640" height="400" />
+
 
     - Purpose: Display key stats re hazardous asteroids.
      - Main widgets:
@@ -330,7 +336,7 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
 
 4) Models & Evaluation
 
-<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="600" height="400" />
+
 
     - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
      - Main widgets:
@@ -347,21 +353,32 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
          - Yet to be decided
      
 
-Layout & design notes
+#### Colour Guide/ Design Guide
 
 <img src="Data/images/Dashboard_colours.png" alt="Design scheme" width="400" height="400" />
+</br></br>
 
-- To be decided
-- Colour scheme to match theme - dark background, orange for hazard, yellow for stats etc.
+- Navy dark colours for backgrounds
+- Background Canvas image possibly
+- Space/ asteroid themed icons/ logo
+
+#### Wireframe Dashboard Designs
+<p>
+<img src="Data/images/Dashboard1.png" alt="Overview wireframe" width="400" height="300" />
+<img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="400" height="300" />
+</p></br>
+<p>
+<img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="400" height="300" />
+<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="400" height="300" />
+</p></br>
+
 
 (Note: Wireframe images created by generative AI with detailed prompts)
 
 
 
 ## Unfixed Bugs
-* Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
-* Did you recognise gaps in your knowledge, and how did you address them?
-* If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
+* None Reported
 
 ## Development Roadmap
 
@@ -377,6 +394,20 @@ Layout & design notes
 * What new skills or tools do you plan to learn next based on your project experience?
     * I concentrated upon using Tree models for this project - the next obvious step is to use logistic regression either with the same data or with more detailed data.
     * To investigate and become proficient in more Python data-analytics and ML libraries
+
+
+
+## Glossary
+
+* **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
+* **h** -  Absolute Magnitude, scale direction: lower H = brighter/larger
+* **GEO** -  Geostationary Equatorial Orbit
+* **LEO** - Low Earth Orbit
+* **AU** - Astronomical Unit - based upon the earth's average distance from the sun (roughly 150m km)
+* **pha** - Potentially Hazardous Asteroid
+* **albedo** - A measure of reflectivity - asteroids are often classified using this.
+* **JPL** - NASA Jet Propulsion Lab
+
 
 ## Deployment
 ### Heroku
