@@ -123,16 +123,5 @@ Notes: `feature_engine` is used for imputation and ordinal encoding inside pipel
 
 ---
 
-## Generated `requirements.txt` (see repository root)
-A requirements file was generated and saved as `requirements.txt` at the repository root. It contains unpinned package names for the libraries seen across the notebooks. If you prefer pinned versions, let me know and I can produce pinned versions based on your environment.
-
-Recommended optional packages for interactive profiling / notebook rendering:
-- ipywidgets  # required to render some rich ydata-profiling outputs in notebooks
-
 ---
-
-If you'd like I can also:
-- remove or replace the unused imports directly in the notebooks (I can create patches),
-- generate a pinned `requirements.txt` using your current Python environment (if you want me to inspect it),
-- produce a short shell snippet to create a virtual environment and install the generated `requirements.txt`.
 
