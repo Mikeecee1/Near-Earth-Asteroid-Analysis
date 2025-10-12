@@ -10,7 +10,8 @@
 ### Project Overview
 
 This project explores NASA’s Near-Earth Object (NEO) dataset, focusing on asteroids that come within close proximity to Earth.
-# Using publicly available data from NASA’s JPL Center for Near-Earth Object Studies (CNEOS) and a Kaggle mirror of the dataset, this analysis investigates the physical and orbital characteristics that influence whether an asteroid is classified as potentially hazardous.
+
+Using publicly available data from NASA’s [JPL Center](https://www.jpl.nasa.gov/) for Near-Earth Object Studies (CNEOS) and a Kaggle mirror of the dataset, this analysis investigates the physical and orbital characteristics that influence whether an asteroid is classified as potentially hazardous.
 
 To achieve this I use statistical tests and visualisations to examine the data, and Machine Learning techniques to investigate which properties are predictive of hazardous asteroids.
 I will create detailed summaries outlining findings and produce a Power BI dashboard as a visual guide to the project and findings.
