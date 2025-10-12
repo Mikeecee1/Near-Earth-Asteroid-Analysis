@@ -1,29 +1,25 @@
 
 
-<table align="left">
-  <tr>
-    <td><img src="AsteroidLogo.png" alt="Asteroid logo" width="120" /></td>
-    <td width="50"></td>
-    <td><img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" alt="CI logo" width="120" /></td>
-  </tr>
-</table></br></br></br></br></br></br></br></br>
+
+<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" alt="CI logo" width="120" /></td>
+    
 
 ***
-# Near Earth Asteroid Analysis 🪐 
+#  Near Earth Asteroid Analysis 🚀
 
 ### Project Overview
 
 This project explores NASA’s Near-Earth Object (NEO) dataset, focusing on asteroids that come within close proximity to Earth.
-Using publicly available data from NASA’s JPL Center for Near-Earth Object Studies (CNEOS) and downloaded from [Kaggle](https://www.kaggle.com/datasets/sameepvani/nasa-nearest-earth-objects), this analysis investigates the physical and orbital characteristics that influence whether an asteroid is classified as potentially hazardous.
+# Using publicly available data from NASA’s JPL Center for Near-Earth Object Studies (CNEOS) and a Kaggle mirror of the dataset, this analysis investigates the physical and orbital characteristics that influence whether an asteroid is classified as potentially hazardous.
 
-To achieve this I will use statistical tests and visualisations to examine the data and Machine Learning techniques to investigate which properties hazardous asteroids can be identified by.
-I will create detailed summaries outlining findings and produce a powerBI dashboard as a visual guide to the project and findings.
+To achieve this I use statistical tests and visualisations to examine the data, and Machine Learning techniques to investigate which properties are predictive of hazardous asteroids.
+I will create detailed summaries outlining findings and produce a Power BI dashboard as a visual guide to the project and findings.
 
 ***
 
 ## Dataset Content
-* The dataset includes key attributes such as estimated diameter, relative velocity, miss distance, and absolute magnitude of over 27000 asteroids with 90000 observations.
-Additional features have been added (based upon the original data). For example number of observations per object, was engineered to capture tracking frequency and observation density.
+* The dataset includes key attributes such as estimated diameter, relative velocity, miss distance, and absolute magnitude of over 27,000 asteroids with 90,000 observations.
+Additional features have been added (based upon the original data). For example, the number of observations per object was engineered to capture tracking frequency and observation density.
 
 ### Columns in `Data/Raw/neo.csv` (source file)
 
@@ -40,18 +36,18 @@ Additional features have been added (based upon the original data). For example 
 
 ### Transformed Columns
 
-- `est_diameter_mean`(min + max) / 2 -	Represents the best single-value estimate of asteroid size
-- `diameter_range`(max − min) - Indicates uncertainty or shape variability
-- `relative_velocity`(mean) - average relative velocity across observations
-- `absolute_magnitude`(mean) - average magnitude across observations
-- `observations` - aggregated for each object (range 1-43)
+- `est_diameter_mean` — (min + max) / 2 — represents the best single-value estimate of asteroid size
+- `diameter_range` — (max − min) — indicates uncertainty or shape variability
+- `relative_velocity` (mean) — average relative velocity across observations
+- `absolute_magnitude` (mean) — average magnitude across observations
+- `observations` — aggregated for each object (range 1–43)
 
 
 ### Log-transformed columns (added to `Data/Processed/features.csv`)
 
-To stabilise variance and reduce heavy right-skew in several distance/size/velocity columns I added safe, non-destructive log transforms in the processed features file. 
+To stabilise variance and reduce heavy right-skew in several distance/size/velocity columns, I added safe, non-destructive log transforms in the processed features file.
 - `est_diameter_min_log1p`, `est_diameter_max_log1p` — log1p of original diameter bounds (km). Useful for plotting and linear-model inputs.
-- `est_diameter_mean_log1p`, `est_diameter_range_log1p` — log1p of the derived mean and range of diameter; compresses extreme values and reduces influence of large outliers.
+- `est_diameter_mean_log1p`, `est_diameter_range_log1p` — log1p of the derived mean and range of diameter; compresses extreme values and reduces the influence of large outliers.
 - `relative_velocity_mean_log1p` — log1p of average relative approach velocity; helps visualisation and models when velocity varies across orders of magnitude.
 - `miss_distance_mean_log1p`, `miss_distance_min_log1p` — log1p of miss distances to compress the very large distance scale and reveal structure at smaller scales.
 
@@ -65,21 +61,21 @@ To stabilise variance and reduce heavy right-skew in several distance/size/veloc
 - `observation_class`  — derived from observations counts (single → extensive).
 Rationale: compresses long-tailed counts into interpretable tracking-frequency classes.
 
-- These transformed columns are kept alongside the originals so as to choose the most appropriate representation for modelling or visualisation. 
+- These transformed columns are kept alongside the originals so the most appropriate representation can be chosen for modelling or visualisation.
 
 
-### saved datasets 
+### Saved datasets
 
 **Observations (observations.csv)**
- Cleaned version of original dataset for use in dashboard
+Cleaned version of original dataset for use in the dashboard.
 
 **Features (features.csv)**
-Aggregated version of observations.csv with transformed features
-For use in dashboard, statistical tests and visualisations
+Aggregated version of observations.csv with transformed features.
+For use in the dashboard, statistical tests and visualisations.
 
 **Modelled Features (features_model.csv)**
-Based on Features dataset with encoded columns for ML modelling.
-For use ML, visuals and dashboards.
+Based on the Features dataset with encoded columns for ML modelling.
+For use in ML, visuals and dashboards.
 
 *(Full details of datasets with data types saved to Data/Reports/feature_lists.md)*
 
@@ -88,7 +84,7 @@ For use ML, visuals and dashboards.
 The requirements of the project are to:
 
 * Identify potentially dangerous asteroids
-    - Detail: Use the hazard flag and derived metrics (size, miss distance, velocity) to identify potentially hazardous objects. 
+    - Detail: Use the hazard flag and derived metrics (size, miss distance, velocity) to identify potentially hazardous objects.
 
 * Investigate which physical properties contribute to hazardous status
     - Detail: Run hypothesis tests and simple predictive models to quantify how diameter, velocity and miss distance relate to the `hazardous` label. Include uncertainty estimates and effect sizes.
@@ -120,7 +116,7 @@ Hazardous asteroids may:
 ## **Hypothesis and how to validate?**
 
 The hypotheses for this project are as follows:
-* #### **Physical and Predictive Hypotheses** 🚀
+* #### **Physical and Predictive Hypotheses** 
     * **Larger asteroids** (greater estimated diameters) are more likely to be classified as hazardous.
         * **Validation**
             1. Compare diameter distributions between hazardous vs non-hazardous objects with a boxplot / violin plot.
@@ -280,10 +276,10 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
 ## Ethical considerations
 * Privacy and personal data
     * The dataset is astronomical and does not contain personal data.
-* There are few ethical or societal issues regarding this project.
-    * Legal and ethical consderations would be covered by the [Space Treaty](https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/introouterspacetreaty.html) under the governance of the UN.
+    * There are few ethical or societal issues regarding this project.
+    * Legal and ethical considerations would be covered by the [Space Treaty](https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/introouterspacetreaty.html) under the governance of the UN.
 * Dual use and misuse
-    * Near-Earth object (NEO) analysis could inform planetary defense policy or, in theory, be misused in other contexts - e.g. exploitation of resources, misinformation regarding threat (sensationlism).
+    * Near-Earth object (NEO) analysis could inform planetary defence policy or, in theory, be misused in other contexts - e.g. exploitation of resources, misinformation regarding threat (sensationalism).
 However, this project is an exploration of already existing and publicly available data and is unlikely to pose any ethical issues.
 
 ## Dashboard Design
@@ -300,18 +296,18 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
 
 <img src="Data/images/Dashboard1.png" alt="Interesting asteroids" width="640" height="400" />
 
-     - Purpose: At-a-glance summary of dataset. ()
+    - Purpose: At-a-glance summary of the dataset.
      - Main widgets:
          - Header with project title.
          - KPI cards: Total NEOs, # Potentially Hazardous (PHA), Average estimated diameter, closest approaches.
-     - Interactions: Click a row in to filter for different parameters.
+    - Interactions: Click a row to filter for different parameters.
      
 
 2) Object Detail (drill-down)
 
 <img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="640" height="400" />
 
-     - Purpose: Show complete known history and metrics for intersting NEOs.
+    - Purpose: Show complete known history and metrics for interesting NEOs.
      - Main widgets:
          - Title with `name` and `id`, hazard flag and key stats (diameter range, mean, kinetic energy proxy).
          - Model explainability panel: feature importance for this object (if per-object prediction), and a short natural-language explanation.
@@ -322,12 +318,12 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
 
 <img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="640" height="400" />
 
-     - Purpose: Diplay key stats re hazardous asteroids.
+    - Purpose: Display key stats re hazardous asteroids.
      - Main widgets:
          - Summary - key stats.
          - Largest, closest, fastest hazards - density at different sizes
          - Year first detected - timeline (extractable from name field)
-         - average stats for hazardoud
+         - Average stats for hazardous objects
      - Interactions: Slider to adjust hazardous first seen by year (to be decided). 
 
 
@@ -335,7 +331,7 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
 
 <img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="600" height="400" />
 
-     - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
+    - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
      - Main widgets:
          - Model summary card (type, train/test split, features used, date trained).
          - Performance plots: ROC curve, Precision-Recall curve, confusion matrix, calibration plot.
@@ -345,7 +341,7 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
      
      
 5) Storyboard Dash
-     - Purpose: Give non technical overview.
+    - Purpose: Give a non-technical overview.
      - Main widgets:
          - Yet to be decided
      
@@ -355,9 +351,9 @@ Layout & design notes
 <img src="Data/images/Dashboard_colours.png" alt="Design scheme" width="400" height="400" />
 
 - To be decided
-- Colour Scheme to match theme - dark background, orange for hazard, yellow for stats etc.
+- Colour scheme to match theme - dark background, orange for hazard, yellow for stats etc.
 
-(Note: Wireframe images created by chatGpt with detailed prompts)
+(Note: Wireframe images created by generative AI with detailed prompts)
 
 
 
@@ -367,8 +363,19 @@ Layout & design notes
 * If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
 
 ## Development Roadmap
-* What challenges did you face, and what strategies were used to overcome these challenges?
-* What new skills or tools do you plan to learn next based on your project experience? 
+
+* The most difficult problems I faced were how to handle the data and how best to represent it:
+    * The data covered multiple observations of numerous asteroids
+    * How to aggregate while still retaining important information was a key consideration
+    * The initial dataset contained information on numerous asteroids that were not potentially harmful (too small)
+    * This required a secondary data cleaning/pruning process after the initial ETL phase (with hindsight this could have been picked up earlier)
+    * This caused a knock-on effect of pushing back the ML and dashboard phases of the project
+    * The lack of extensive orbital data also caused some problems in modelling as did the use of inverted scales for some data
+    
+
+* What new skills or tools do you plan to learn next based on your project experience?
+    * I concentrated upon using Tree models for this project - the next obvious step is to use logistic regression either with the same data or with more detailed data.
+    * To investigate and become proficient in more Python data-analytics and ML libraries
 
 ## Deployment
 ### Heroku
@@ -386,23 +393,79 @@ Layout & design notes
 
 
 ## Main Data Analysis Libraries
-* Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
 
+ pandas
+  - Where used: All notebooks.
+  - Purpose: primary data loading, DataFrame manipulation, grouping/aggregation, I/O , basic summary tables.
+
+- numpy
+  - Where used: All notebooks.
+  - Purpose: numeric operations, log1p transforms, arrays and numeric helpers.
+
+- matplotlib (matplotlib.pyplot as plt)
+  - Where used: ETL, Visualisation, Modelling, ML_Modelling.
+  - Purpose: static plotting (histograms, boxplots, violin plots, scatterplots, confusion matrix plotting wrappers).
+
+- seaborn
+  - Where used: ETL, Visualisation, Modelling, ML_Modelling.
+  - Purpose: higher-level plotting: histplots, violin/boxplots, KDE plots, scatterplots with styling.
+
+- plotly (plotly.express as px)
+  - Where used: Visualisation, Modelling, ML_Modelling.
+  - Purpose: interactive visualisations (parallel coordinates, interactive scatter). 
+
+- warnings
+  - Where used: Visualisation, Modelling, ML_Modelling.
+  - Purpose: suppress non-essential warnings.
+
+
+- ydata_profiling (ProfileReport)
+  - Where used: ETL.ipynb.
+  - Purpose: generate an initial profiling report (ydata_profiling.ProfileReport) saved to `Data/Reports/neo_profile_report.html`.
+
+- pingouin (pg)
+  - Where used: Visualisation.ipynb.
+  - Purpose: normality checks.
+
+- scipy.stats
+  - Where used: Visualisation, Modelling, ML_Modelling.
+  - Purpose: statistical tests and correlation functions (mannwhitneyu, spearmanr, ttest_ind). 
+
+- sklearn (scikit-learn)
+  - Where used: Modelling.ipynb, ML_Modelling.ipynb, Visualisation.ipynb (light usage/import in EDA).
+  - Purpose: model selection (train_test_split, GridSearchCV, StratifiedKFold), model classes (DecisionTreeClassifier, RandomForestClassifier, ExtraTreesClassifier), pipelines, preprocessing (KBinsDiscretizer), metrics, confusion matrix plotting, and model evaluation.
+
+- feature_engine
+  - Where used: Modelling / ML_Modelling pipelines.
+  - Purpose: imputation (MeanMedianImputer, CategoricalImputer) and encoding (OrdinalEncoder) inside sklearn pipelines.
+
+- pandas styling / display options
+  - Where used: notebooks to adjust display settings for readability.
+
+*Full technical details saved to Data/Reports/technical_report.md and Data/Reports/technical_info_detailed.md*
 
 ## Credits 
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
-
 ### Content 
+
+* I used chatGPT extensively as a sounding board for ideas, hypothesis generation, to clarify my understanding of some workflows and processes - particulary for ML and to generate/ edit some code snippets (though these I generally edited myself)
+
+* I used copilot to generate reports, adding summaries to README which I could then edit and for limited error checking.
+  I used it to autocomplete code (though often had to revise suggestions). I avoided using it for code generation and suggestions, as I find it often misses context and will edit existing code where it is not needed or suggests over-verbose code
+
+* I used several datasets and websites to gain a better understanding of concepts and terminology.
+    * [Dataset used](https://www.kaggle.com/datasets/sameepvani/nasa-nearest-earth-objects)
+    * Original planned [dataset](https://www.kaggle.com/datasets/sakhawat18/asteroid-dataset)
+    * Data used to understand [domain](https://www.kaggle.com/datasets/imtkaggleteam/nasa-neo-earth-close-approaches)
+    * Data used to understand [domain](https://www.kaggle.com/datasets/basu369victor/prediction-of-asteroid-diameter)
+    * Nasa for various aspects of domain knowledgehttps://www.nasa.gov/
 
 
 ### Media
 
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
-
+- Icons and logo images (other than CodeInstitute logo) were generated by ChatGPT
 
 
 ## Acknowledgements (optional)
-* Thank the people who provided support through this project.
+* Thanks to Vasi and everyone at Code Institute for support & guidance.
+* Thanks to my CI cohort
