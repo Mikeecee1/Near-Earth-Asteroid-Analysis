@@ -1,4 +1,14 @@
 
+
+<table align="left">
+  <tr>
+    <td><img src="AsteroidLogo.png" alt="Asteroid logo" width="120" /></td>
+    <td width="50"></td>
+    <td><img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" alt="CI logo" width="120" /></td>
+  </tr>
+</table></br></br></br></br></br></br></br></br>
+
+***
 # Near Earth Asteroid Analysis 🪐 
 
 ### Project Overview
@@ -6,9 +16,10 @@
 This project explores NASA’s Near-Earth Object (NEO) dataset, focusing on asteroids that come within close proximity to Earth.
 Using publicly available data from NASA’s JPL Center for Near-Earth Object Studies (CNEOS) and downloaded from [Kaggle](https://www.kaggle.com/datasets/sameepvani/nasa-nearest-earth-objects), this analysis investigates the physical and orbital characteristics that influence whether an asteroid is classified as potentially hazardous.
 
+To achieve this I will use statistical tests and visualisations to examine the data and Machine Learning techniques to investigate which properties hazardous asteroids can be identified by.
+I will create detailed summaries outlining findings and produce a powerBI dashboard as a visual guide to the project and findings.
 
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
+***
 
 ## Dataset Content
 * The dataset includes key attributes such as estimated diameter, relative velocity, miss distance, and absolute magnitude of over 27000 asteroids with 90000 observations.
@@ -27,14 +38,14 @@ Additional features have been added (based upon the original data). For example 
 - `absolute_magnitude` — absolute magnitude H (brightness; lower = brighter/larger).
 - `hazardous` — boolean flag for potentially hazardous status (True/False).
 
-### Feature Engineered Columns
+### Transformed Columns
 
 - `est_diameter_mean`(min + max) / 2 -	Represents the best single-value estimate of asteroid size
 - `diameter_range`(max − min) - Indicates uncertainty or shape variability
 - `relative_velocity`(mean) - average relative velocity across observations
 - `absolute_magnitude`(mean) - average magnitude across observations
 - `observations` - aggregated for each object (range 1-43)
-- `hazardous_enc` - encoded hazardous status (1 for True, 0 for False)
+
 
 ### Log-transformed columns (added to `Data/Processed/features.csv`)
 
@@ -44,43 +55,33 @@ To stabilise variance and reduce heavy right-skew in several distance/size/veloc
 - `relative_velocity_mean_log1p` — log1p of average relative approach velocity; helps visualisation and models when velocity varies across orders of magnitude.
 - `miss_distance_mean_log1p`, `miss_distance_min_log1p` — log1p of miss distances to compress the very large distance scale and reveal structure at smaller scales.
 
+### Encoded Features (added to `Data/Processed/features_model.csv`)
+
+- `hazardous_enc` - encoded hazardous status (1 for True, 0 for False)
+- `diameter_class`  — labels derived from est_diameter_mean (small, medium, large, very_large).
+- `proximity_class` — labels derived from miss_distance_mean (extremely_close → very_distant).
+- velocity_class  — labels derived from relative_velocity_mean encoded to speed bands (km/h).
+- `brightness_class` — derived from absolute_magnitude_mean bins (brighter → dim). Mitigates inverted H scale and groups objects by observational brightness.
+- `observation_class`  — derived from observations counts (single → extensive).
+Rationale: compresses long-tailed counts into interpretable tracking-frequency classes.
+
 - These transformed columns are kept alongside the originals so as to choose the most appropriate representation for modelling or visualisation. 
 
-- All transformations are documented in `jupyter_notebooks/ETL.ipynb` so the pipeline is reproducible and auditable.
 
-### saved datasets & columns
+### saved datasets 
 
 **Observations (observations.csv)**
-* name
-* est_diameter_min
-* est_diameter_max
-* relative_velocity
-* miss_distance
-* absolute_magnitude
-* hazardous
-* observations
+ Cleaned version of original dataset for use in dashboard
 
 **Features (features.csv)**
-* name
-* est_diameter_min
-* est_diameter_max
-* relative_velocity_mean
-* miss_distance_mean
-* miss_distance_min
-* absolute_magnitude_mean
-* hazardous
-* observations
-* est_diameter_range
-* est_diameter_mean
-* est_diameter_min_log1p
-* est_diameter_max_log1p
-* est_diameter_mean_log1p
-* est_diameter_range_log1p
-* relative_velocity_mean_log1p
-* miss_distance_mean_log1p
-* miss_distance_min_log1p*
-* hazardous_enc
+Aggregated version of observations.csv with transformed features
+For use in dashboard, statistical tests and visualisations
 
+**Modelled Features (features_model.csv)**
+Based on Features dataset with encoded columns for ML modelling.
+For use ML, visuals and dashboards.
+
+*(Full details of datasets with data types saved to Data/Reports/feature_lists.md)*
 
 ## Business Requirements
 
