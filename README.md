@@ -272,34 +272,47 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
 * Dual use and misuse
     * Near-Earth object (NEO) analysis could inform planetary defence policy or, in theory, be misused in other contexts - e.g. exploitation of resources, misinformation regarding threat (sensationalism).
 However, this project is an exploration of already existing and publicly available data and is unlikely to pose any ethical issues.
+----
 
 ## Dashboard Design
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
-* Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
-* How were data insights communicated to technical and non-technical audiences?
-* Explain how the dashboard was designed to communicate complex data insights to different audiences.
 
 ### Dashboard wireframes (brief)
 
-Below are four concise wireframes for a compact dashboard. Each wireframe includes purpose, main widgets, data sources, interactions, and acceptance criteria. These are framework-agnostic and can be implemented with Plotly Dash, Streamlit, Voila, or a static report.
+Below are four concise wireframes for a compact dashboard. These are a selection of wireframe images outlining inital plans, intended charts and widgets.
 
-1) **Overview / Home**
+#### Wireframe Dashboard Designs
+<p>
+<img src="Data/images/Dashboard1.png" alt="Overview wireframe" width="400" height="300" />
+<img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="400" height="300" />
+</p></br>
+<p>
+<img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="400" height="300" />
+<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="400" height="300" />
+</p></br>
+
+#### Colour Guide/ Design Guide
+
+<img src="Data/images/Dashboard_colours.png" alt="Design scheme" width="400" height="400" />
+</br></br>
+
+- Navy dark colours for backgrounds
+- Background Canvas image possibly
+- Space/ asteroid themed icons/ logo
+
+(Note: Wireframe images created by generative AI with detailed prompts)
 
 
-**Dashboard 1**
+### Dashboard Details
 
+
+
+**Dashboard 1 - Overview**
 ---
 
-![Dashboard 1](Data/images/Dashboard_Overview.png)
-
-<img src="https://raw.githubusercontent.com/Mikeecee1/Near-Earth-Asteroid-Analysis/main/Data/images/Dashboard_Overview.png" alt="Overview Dashboard" />
-
----
-
-    - Purpose: At-a-glance summary of the dataset.
-     - Main widgets:
-         - Header with project title.
-         - KPI cards: Total Observations, Total NEOs, Potentially Hazardous (PHA), Hazardous Asteroids
+- Purpose: At-a-glance summary of the dataset.
+    - Main widgets:
+        - Header with project title.
+        - KPI cards: Total Observations, Total NEOs, Potentially Hazardous (PHA), Hazardous Asteroids
     - Charts 
         - Pie Chart showing diameter distributions
         - Scatter plot with sliders showing close approaches and diameter
@@ -308,6 +321,10 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
         - Scatter plot has sliders to zoom in for close approaches and diameter
         - Scatter plot has hover data shows asteroid statistics.
         (varies from wireframe)
+</br></br>
+
+
+![Dashboard 1](Data/images/Dashboard_Overview.png)
      
 
 2) Object Detail (drill-down)
@@ -353,14 +370,7 @@ Below are four concise wireframes for a compact dashboard. Each wireframe includ
          - Yet to be decided
      
 
-#### Colour Guide/ Design Guide
 
-<img src="Data/images/Dashboard_colours.png" alt="Design scheme" width="400" height="400" />
-</br></br>
-
-- Navy dark colours for backgrounds
-- Background Canvas image possibly
-- Space/ asteroid themed icons/ logo
 
 #### Wireframe Dashboard Designs
 <p>
