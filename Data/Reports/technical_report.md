@@ -90,15 +90,4 @@ This document summarises the Python libraries imported across the notebooks in `
   - plotly: parallel coordinates plot for exploratory analysis.
   - seaborn/matplotlib: plotting feature importances and violin/boxplots/KDEs.
 
-## Suggestions
-- If you intend to trim `requirements.txt`, consider auditing the following for actual usage: `plotly.graph_objects`, top-level `sklearn` import, and redundant `from scipy import stats` versus explicit `scipy.stats` imports.
-- Keep `ydata_profiling` in dependencies if you rely on the profiling report; it can be large and requires extra packages (ipywidgets) to render well in notebooks.
 
----
-
-If you'd like, I can:
-- add exact import lines and the notebook cell numbers where each import occurs,
-- generate a minimal `requirements.txt` (pinned or unpinned) derived from the imported libraries,
-- remove unused imports in the notebooks and create patches.
-
-Next step: I will create the file `technical_info.md` (done) and mark the todo completed. I'll now mark the todo as completed.
