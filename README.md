@@ -507,6 +507,10 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 
 * The App live link is: [Heroku](https://dashboard.heroku.com/apps/near-earth-asteroid-analysis)
 
+### Power BI
+
+* Dashboard viewable at: [Power BI](https://app.powerbi.com/groups/me/reports/24965605-13bd-4e4e-9821-16f910b4ff03/cd305fabcc9099209731?experience=power-bi)
+
 
 ## Main Data Analysis Libraries
 
