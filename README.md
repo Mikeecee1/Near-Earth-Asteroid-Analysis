@@ -251,18 +251,91 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
     - Notes: Grid search can be long-running; notebook emphasises recall (safety‑first) and documents reproducibility steps (working directory and seed).
 
 
-
-
-
-
 ## The rationale to map the business requirements to the Data Visualisations
-* List your business requirements and a rationale to map them to the Data Visualisations
+
+* Identify potentially dangerous asteroids → scatter plot (est_diameter vs miss_distance) coloured by hazardous — quickly highlights large objects with close approaches.
+* Investigate physical drivers → side‑by‑side box/violin plots for diameter, velocity and magnitude by hazardous — compares distributions and effect sizes.
+* Quantify observation patterns → log‑scaled scatter / heatmap of observations vs miss_distance and diameter — reveals monitoring bias and correlation.
+* Evaluate predictive models → ROC/PR curves plus confusion matrix and feature‑importance bar chart — shows classifier performance and top predictors.
+* Stakeholder summary & drilldown → KPI cards + interactive filters (date, size, proximity) — enables fast insight and targeted investigation.
 
 ## Analysis techniques used
-* List the data analysis methods used and explain limitations or alternative approaches.
-* How did you structure the data analysis techniques. Justify your response.
-* Did the data limit you, and did you use an alternative approach to meet these challenges?
-* How did you use generative AI tools to help with ideation, design thinking and code optimisation?
+# Analysis methods used — summary and alternatives
+
+## Data cleaning & ETL
+- Standardisation & type coercion
+  - Action: convert columns to numeric types, normalise units (kilometres, km/h), a
+  - Alternatives: schema-first validation (e.g., `pandera`, `pydantic`). Trade-off: stricter validation but more upfront schema work.
+- Aggregation
+  - What: group observation-level rows by `name` and aggregate into object-level features (means, minima, counts).
+  - Why: modelling and many EDA steps require one row per object; aggregation reduces noise from repeated measurements.
+  - Alternatives: hierarchical models or mixed-effects models that retain per-observation data and model within-object variation; trade-off: increased model complexity and runtime.
+
+## Feature engineering
+- Log1p transforms for skewed variables
+  - Action: non-destructive log1p columns for diameter, miss distance and velocity.
+  - Why: reduces right skew, improves visualization and linear-model assumptions.
+  - Alternatives: Box–Cox or Yeo–Johnson transforms, robust scaling (e.g., quantile transforms) when distributions vary.
+- Derived features and bins
+  - What: `est_diameter_mean`, `diameter_range`, binned classes for diameter/proximity/velocity/brightness/observations.
+  - Why: creates interpretable features for tree models and dashboards.
+  - Alternatives: continuous modelling of data.
+
+## Exploratory Data Analysis (EDA)
+- Visual diagnostics
+  - What: histograms, KDEs, boxplots/violin plots, scatterplots (log-scaled where helpful), and heatmaps for correlations.
+  - Why: reveal distributional differences and relationships before modelling.
+  - Alternatives: interactive dashboards for richer exploration.
+- Statistical hypothesis testing
+  - What: Mann–Whitney U tests for non-normal two-sample comparisons, Spearman correlations for monotonic relationships.
+  - Why: robust to non-normality and outliers common in astronomical data.
+  - Alternatives: parametric t-tests when normality is reasonable, permutation tests for exact p-values, or Bayesian comparisons.
+
+## Modelling
+- Baseline and tree-based models
+  - What: Decision Tree, Random Forest, Extra Trees as baseline/interpretable ensembles.
+  - Why: handle mixed data types, require little preprocessing for non-linear relationships, and provide feature importance.
+  - Alternatives: Logistic regression (simple, interpretable), XGBoost / LightGBM (often higher accuracy, more tuning) - planned for future development.
+- Pipeline & preprocessing
+  - What: scikit-learn Pipelines with imputation, scaling/encoding and model estimator; GridSearchCV for hyperparameter tuning.
+  - Why: reproducible workflows and safe parameter estimation with cross-validation.
+  - Alternatives:RandomizedSearchCV for more efficient hyperparameter search, or nested CV for more robust performance estimates. (beyond project scope and resources atm)
+- Class imbalance handling
+  - What: focus on recall for `hazardous` class; tuning and class weights used to prioritise sensitivity.
+  - Why: missing a hazardous object is costlier than a false positive in this context.
+  - Alternatives: resampling.
+
+## Evaluation & interpretation
+- Metrics
+  - What: ROC‑AUC, Precision-Recall AUC, confusion matrices, recall-focused thresholds.
+  - Why: ROC gives an overall ranking metric, PR-AUC highlights performance on imbalanced positive class.
+  - Alternatives: F1 score for balance, or domain-specific utility/cost functions when the operational cost of errors is known.
+- Explainability
+  - What: global feature importance for tree models and partial dependence plots for top features.
+  - Why: provides interpretable signals for domain experts and stakeholders.
+  - Alternatives: SHAP or LIME for local and global explanations.
+
+## Reporting & Dashboarding
+- Static & interactive outputs
+  - What: static PNG/SVG figures for reports and an interactive dashboard (Power BI / Plotly Dash) for exploration.
+  - Why: static figures are reproducible in reports; interactive dashboards enable ad-hoc exploration.
+  - Alternatives: Streamlit. Tableau or Voila.
+
+## Reproducibility
+- Environment & dependencies
+  - What: pinned requirements file and documented notebooks with seed settings and working-directory notes.
+  - Why: reproducible results across environments.
+  - Alternatives: containerisation (Docker) or environment managers (conda, pip-tools).
+
+---
+## Analysis & Conclusions
+
+* I structured the analysis by examining hypothesis individually and providing representations which aligned with the project goals. I found this to be an iterative process, with analysis leading to re evaluation.
+
+* The Data became much more complicated than was needed - partially due to need to balance very skewed data while keeping representation of important features - in retrospect, though this was missing key aspects important to the main project goal - i.e. Predicting Hazardous Asteroids.
+An example would be better and more detailed orbital data. I feel this was the most important take away from building this project.
+
+* I used Generative AI mostly as a sounding board for ideas, helping with planning the project and summarising documentation in a form that I could then edit (AI tends to very verbose!). For code I mostly used autocompletion. During the ML phase I used AI to help suggest parameter lists for models and for editing more complex code blocks.
 
 ## Ethical considerations
 * Privacy and personal data
@@ -350,17 +423,18 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 3) Hazardous Asteroids
 
 
-
     - Purpose: Display key stats re hazardous asteroids.
      - Main widgets:
-         - Summary - key stats.
+         - Summary - key stats
          - Largest, closest, fastest hazards - density at different sizes
-         - Year first detected - timeline (extractable from name field)
+         - Pie chart
          - Average stats for hazardous objects
-     - Interactions: Slider to adjust hazardous first seen by year (to be decided). 
+     - Interactions: Did not have time to complete interactions. 
+</br></br>
+[Dashboard 3 ](Data/images/Dashboard_Hazard.png)
 
 
-4) Models & Evaluation
+4) Models & Evaluation - NOT COMPLETED
 
 
 
@@ -431,16 +505,7 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 ## Deployment
 ### Heroku
 
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
-* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. From the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+* The App live link is: [Heroku](https://dashboard.heroku.com/apps/near-earth-asteroid-analysis)
 
 
 ## Main Data Analysis Libraries
