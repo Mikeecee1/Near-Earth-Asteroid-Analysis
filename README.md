@@ -328,18 +328,25 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 
 ![Dashboard 1](Data/images/Dashboard_Overview.png)
      
+**Dashboard 1 - Velocity & Brightness**
+---
 
-2) Object Detail (drill-down)
+- Purpose: Inspect Velocity & Magnitude(Brightness).
+    - Main widgets:
+        - Header with title.
+        - KPI cards: Max Velocity, Max Brightness, Asteroids, Hazardous Asteroids
+    - Charts 
+        - Speed Gauges for Velocity and Magnitude
+        - Scatter plot with sliders showing Velocity and Magnitude
+        - Sliders to toggle categories for Diameter, Proximity, Velocity & Brightness
+        - Scatter plot has sliders to zoom in for close approaches and diameter
+        - Scatter plot has hover data shows asteroid statistics.
+        - To Do - Attempted to add reset button for sliders - removed as not working
+        (varies from wireframe)
+</br></br>
 
+![Dashboard 2](Data/images/Dashboard_Velocity_Brightness.png)
 
-
-    - Purpose: Show complete known history and metrics for interesting NEOs.
-     - Main widgets:
-         - Title with `name` and `id`, hazard flag and key stats (diameter range, mean, kinetic energy proxy).
-         - Model explainability panel: feature importance for this object (if per-object prediction), and a short natural-language explanation.
-     - Interactions: Hover for per-event details, select button to toggle between fastest, largest etc;
-     - Data sources:`features.csv` & `observations.csv`.
-     
 3) Hazardous Asteroids
 
 
@@ -513,3 +520,6 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 ## Acknowledgements (optional)
 * Thanks to Vasi and everyone at Code Institute for support & guidance.
 * Thanks to my CI cohort
+
+
+[def]: Data/images/Dashboard_Velocity_Brightness.png
