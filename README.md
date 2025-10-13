@@ -471,7 +471,8 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 
 
 ## Unfixed Bugs
-* None Reported
+* Small issues with dashboard slicers not unselecting - tried to create resest button with guide but this did not have desired effect 
+* Slug file for heroku slightly too large so not dislaying atm - have deployed to powerbi instead
 
 ## Development Roadmap
 
