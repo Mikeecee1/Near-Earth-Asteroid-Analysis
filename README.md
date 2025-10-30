@@ -7,7 +7,34 @@
 ***
 #  Near Earth Asteroid Analysis 🚀
 
-### Project Overview
+## Table of Contents
+
+<details>
+  <summary>Click to expand</summary>
+
+- [1. Project Overview](#1-project-overview)
+- [2. Dataset Content](#2-dataset-content)
+- [3. Project Requirements](#3-project-requirements)
+- [4. Hypothesis and Validation](#4-hypothesis-and-validation)
+- [5. Project Plan](#5-project-plan)
+- [6. Notebooks Description](#6-notebooks-description)
+- [7. Mapping Project Requirements to Data Visualisations](#7-mapping-project-requirements-to-data-visualisations)
+- [8. Analysis Techniques](#8-analysis-techniques)
+- [9. Analysis & Conclusions](#9-analysis-conclusions)
+- [10. Ethical considerations](#10-ethical-considerations)
+- [11. Dashboard Design](#11-dashboard-design)
+- [12. Unfixed Bugs](#12-unfixed-bugs)
+- [13. Development Roadmap](#13-development-roadmap)
+- [14. Glossary](#14-glossary)
+- [15. Deployment](#15-deployment)
+- [16. Main Data Analysis Libraries](#16-main-data-analysis-libraries)
+- [17. Credits](#17-credits)
+- [18. Acknowledgements](#18-acknowledgements)
+
+
+</details>
+
+## 1. <a name='project-overview'></a> Project Overview
 
 This project explores NASA’s Near-Earth Object (NEO) dataset, focusing on asteroids that come within close proximity to Earth.
 
@@ -18,7 +45,7 @@ I will create detailed summaries outlining findings and produce a Power BI dashb
 
 ***
 
-## Dataset Content
+## 2. <a name='dataset-content'></a>Dataset Content
 * The dataset includes key attributes such as estimated diameter, relative velocity, miss distance, and absolute magnitude of over 27,000 asteroids with 90,000 observations.
 Additional features have been added (based upon the original data). For example, the number of observations per object was engineered to capture tracking frequency and observation density.
 
@@ -80,7 +107,7 @@ For use in ML, visuals and dashboards.
 
 *(Full details of datasets with data types saved to Data/Reports/feature_lists.md)*
 
-## Business Requirements
+## 3. <a name='project-requirements'></a>Project Requirements
 
 The requirements of the project are to:
 
@@ -114,7 +141,7 @@ Hazardous asteroids may:
 
 
 
-## **Hypothesis and how to validate?**
+## 4. <a name='hypothesis-validation'></a>Hypothesis and Validation
 
 The hypotheses for this project are as follows:
 * #### **Physical and Predictive Hypotheses** 
@@ -169,7 +196,7 @@ The hypotheses for this project are as follows:
 
 
 
-## Project Plan
+## 5. <a name='project-plan'></a>Project Plan
 
 
 This project plan maps work into clear phases, links each phase to the notebooks and files in this repository, and lists deliverables and acceptance criteria so progress can be tracked against the project board.
@@ -214,7 +241,7 @@ This project plan maps work into clear phases, links each phase to the notebooks
 - Milestone 4: Dashboard / visual story prepared and documented.
 - Milestone 5: Final report, ethics note, and deployment documentation completed.
 
-## Notebook Description
+## 6. <a name='notebooks'></a>Notebooks Description
 
 Below are concise objectives for the Jupyter notebooks in this repository. Notebooks are listed in order to show workflow.
 
@@ -251,7 +278,7 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
     - Notes: Grid search can be long-running; notebook emphasises recall (safety‑first) and documents reproducibility steps (working directory and seed).
 
 
-## The rationale to map the business requirements to the Data Visualisations
+## 7. <a name='mapping-visualisations'></a>Mapping Project Requirements to Data Visualisations
 
 * Identify potentially dangerous asteroids → scatter plot (est_diameter vs miss_distance) coloured by hazardous — quickly highlights large objects with close approaches.
 * Investigate physical drivers → side‑by‑side box/violin plots for diameter, velocity and magnitude by hazardous — compares distributions and effect sizes.
@@ -259,10 +286,10 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
 * Evaluate predictive models → ROC/PR curves plus confusion matrix and feature‑importance bar chart — shows classifier performance and top predictors.
 * Stakeholder summary & drilldown → KPI cards + interactive filters (date, size, proximity) — enables fast insight and targeted investigation.
 
-## Analysis techniques used
-# Analysis methods used — summary and alternatives
+## 8. <a name='analysis-techniques'></a>Analysis Techniques
+### Summary and Alternatives
 
-## Data cleaning & ETL
+ **Data cleaning & ETL**
 - Standardisation & type coercion
   - Action: convert columns to numeric types, normalise units (kilometres, km/h), a
   - Alternatives: schema-first validation (e.g., `pandera`, `pydantic`). Trade-off: stricter validation but more upfront schema work.
@@ -271,7 +298,7 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
   - Why: modelling and many EDA steps require one row per object; aggregation reduces noise from repeated measurements.
   - Alternatives: hierarchical models or mixed-effects models that retain per-observation data and model within-object variation; trade-off: increased model complexity and runtime.
 
-## Feature engineering
+**Feature engineering**
 - Log1p transforms for skewed variables
   - Action: non-destructive log1p columns for diameter, miss distance and velocity.
   - Why: reduces right skew, improves visualization and linear-model assumptions.
@@ -281,7 +308,7 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
   - Why: creates interpretable features for tree models and dashboards.
   - Alternatives: continuous modelling of data.
 
-## Exploratory Data Analysis (EDA)
+**Exploratory Data Analysis (EDA)**
 - Visual diagnostics
   - What: histograms, KDEs, boxplots/violin plots, scatterplots (log-scaled where helpful), and heatmaps for correlations.
   - Why: reveal distributional differences and relationships before modelling.
@@ -291,7 +318,7 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
   - Why: robust to non-normality and outliers common in astronomical data.
   - Alternatives: parametric t-tests when normality is reasonable, permutation tests for exact p-values, or Bayesian comparisons.
 
-## Modelling
+**Modelling**
 - Baseline and tree-based models
   - What: Decision Tree, Random Forest, Extra Trees as baseline/interpretable ensembles.
   - Why: handle mixed data types, require little preprocessing for non-linear relationships, and provide feature importance.
@@ -305,7 +332,7 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
   - Why: missing a hazardous object is costlier than a false positive in this context.
   - Alternatives: resampling.
 
-## Evaluation & interpretation
+**Evaluation & interpretation**
 - Metrics
   - What: ROC‑AUC, Precision-Recall AUC, confusion matrices, recall-focused thresholds.
   - Why: ROC gives an overall ranking metric, PR-AUC highlights performance on imbalanced positive class.
@@ -315,20 +342,20 @@ Below are concise objectives for the Jupyter notebooks in this repository. Noteb
   - Why: provides interpretable signals for domain experts and stakeholders.
   - Alternatives: SHAP or LIME for local and global explanations.
 
-## Reporting & Dashboarding
+**Reporting & Dashboarding**
 - Static & interactive outputs
   - What: static PNG/SVG figures for reports and an interactive dashboard (Power BI / Plotly Dash) for exploration.
   - Why: static figures are reproducible in reports; interactive dashboards enable ad-hoc exploration.
   - Alternatives: Streamlit. Tableau or Voila.
 
-## Reproducibility
+**Reproducibility**
 - Environment & dependencies
   - What: pinned requirements file and documented notebooks with seed settings and working-directory notes.
   - Why: reproducible results across environments.
   - Alternatives: containerisation (Docker) or environment managers (conda, pip-tools).
 
 ---
-## Analysis & Conclusions
+## 9. <a name='conclusions'></a>Analysis & Conclusions
 
 * I structured the analysis by examining hypothesis individually and providing representations which aligned with the project goals. I found this to be an iterative process, with analysis leading to re evaluation.
 
@@ -337,7 +364,7 @@ An example would be better and more detailed orbital data. I feel this was the m
 
 * I used Generative AI mostly as a sounding board for ideas, helping with planning the project and summarising documentation in a form that I could then edit (AI tends to very verbose!). For code I mostly used autocompletion. During the ML phase I used AI to help suggest parameter lists for models and for editing more complex code blocks.
 
-## Ethical considerations
+## 10. <a name='ethics'></a>Ethical considerations
 * Privacy and personal data
     * The dataset is astronomical and does not contain personal data.
     * There are few ethical or societal issues regarding this project.
@@ -347,7 +374,7 @@ An example would be better and more detailed orbital data. I feel this was the m
 However, this project is an exploration of already existing and publicly available data and is unlikely to pose any ethical issues.
 ----
 
-## Dashboard Design
+## 11. <a name='dashboard-design'></a>Dashboard Design
 
 ### Dashboard wireframes (brief)
 
@@ -363,6 +390,7 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 <img src="Data/images/Velocity_wireframe.png" alt="Models & Evaluation" width="400" height="300" />
 </p></br>
 
+(Note: Wireframe images created by generative AI with detailed prompts)
 
 
 #### Colour Guide/ Design Guide
@@ -431,11 +459,11 @@ Below are four concise wireframes for a compact dashboard. These are a selection
          - Average stats for hazardous objects
      - Interactions: Did not have time to complete interactions. 
 </br></br>
-[Dashboard 3 ](Data/images/Dashboard_Hazard.png)
+
+![Dashboard 3](Data/images/Dashboard_Hazard.png)
 
 
 4) Models & Evaluation - NOT COMPLETED
-
 
 
     - Purpose: Present modelling approach, key metrics, and diagnostics used to predict `hazardous`.
@@ -454,27 +482,11 @@ Below are four concise wireframes for a compact dashboard. These are a selection
      
 
 
-
-#### Wireframe Dashboard Designs
-<p>
-<img src="Data/images/Dashboard1.png" alt="Overview wireframe" width="400" height="300" />
-<img src="Data/images/Dashboard2.png" alt="Interesting asteroids" width="400" height="300" />
-</p></br>
-<p>
-<img src="Data/images/Dashboard3.png" alt="Hazardous asteroids" width="400" height="300" />
-<img src="Data/images/Dashboard4.png" alt="Models & Evaluation" width="400" height="300" />
-</p></br>
-
-
-(Note: Wireframe images created by generative AI with detailed prompts)
-
-
-
-## Unfixed Bugs
+## 12. <a name='unfixed-bugs'></a>Unfixed Bugs
 * Small issues with dashboard slicers not unselecting - tried to create resest button with guide but this did not have desired effect 
 * Slug file for heroku slightly too large so not dislaying atm - have deployed to powerbi instead
 
-## Development Roadmap
+## 13. <a name='development-roadmap'></a>Development Roadmap
 
 * The most difficult problems I faced were how to handle the data and how best to represent it:
     * The data covered multiple observations of numerous asteroids
@@ -488,10 +500,12 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 * What new skills or tools do you plan to learn next based on your project experience?
     * I concentrated upon using Tree models for this project - the next obvious step is to use logistic regression either with the same data or with more detailed data.
     * To investigate and become proficient in more Python data-analytics and ML libraries
+    * To explore more data analysis & ML techniques
+    * To improve understanding of statistical analysis
 
 
 
-## Glossary
+## 14. <a name='glossary'></a>Glossary
 
 * **neo** - near earth object, classified as an object which can pass within 45m km of the earth's orbit
 * **h** -  Absolute Magnitude, scale direction: lower H = brighter/larger
@@ -503,17 +517,18 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 * **JPL** - NASA Jet Propulsion Lab
 
 
-## Deployment
+## 15. <a name='deployment'></a>Deployment
+
 ### Heroku
 
-* The App live link is: [Heroku](https://dashboard.heroku.com/apps/near-earth-asteroid-analysis)
+* The App live link is: [Heroku](https://dashboard.heroku.com/apps/near-earth-asteroid-analysis)  - to be redeployed with streamlit dashboard
 
 ### Power BI
 
-* Dashboard viewable at: [Power BI](https://app.powerbi.com/groups/me/reports/24965605-13bd-4e4e-9821-16f910b4ff03/cd305fabcc9099209731?experience=power-bi)
+* Dashboard viewable at: [Power BI](https://app.powerbi.com/groups/me/reports/24965605-13bd-4e4e-9821-16f910b4ff03/cd305fabcc9099209731?experience=power-bi) - 0rginal licence expired (to be redeployed once new licence is available)
 
 
-## Main Data Analysis Libraries
+## 16. <a name='main-data-analysis-libraries'></a>Main Data Analysis Libraries
 
  pandas
   - Where used: All notebooks.
@@ -565,7 +580,7 @@ Below are four concise wireframes for a compact dashboard. These are a selection
 
 *Full technical details saved to Data/Reports/technical_report.md and Data/Reports/technical_info_detailed.md*
 
-## Credits 
+## 17. <a name='credits'></a>Credits 
 
 ### Content 
 
@@ -581,15 +596,20 @@ Below are four concise wireframes for a compact dashboard. These are a selection
     * Data used to understand [domain](https://www.kaggle.com/datasets/basu369victor/prediction-of-asteroid-diameter)
     * Nasa for various aspects of domain knowledgehttps://www.nasa.gov/
 
+  * UK English spellings used throughout
+
 
 ### Media
 
 - Icons and logo images (other than CodeInstitute logo) were generated by ChatGPT
 
 
-## Acknowledgements (optional)
+## 18. <a name='acknowledgements'></a>Acknowledgements 
+
 * Thanks to Vasi and everyone at Code Institute for support & guidance.
 * Thanks to my CI cohort
 
 
-[def]: Data/images/Dashboard_Velocity_Brightness.png
+
+
+[acknowledgements]: #acknowledgements

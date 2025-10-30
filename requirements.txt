@@ -14,8 +14,6 @@ feature-engine==1.6.1
 pingouin==0.5.5
 ydata-profiling==4.12.0
 
-# Commonly useful extras (uncomment if you use them)
-# xgboost==1.7.6
 
 # Optional / present in venv but not referenced directly in notebooks (commented for comparison)
 # imbalanced-learn==0.11.0
@@ -26,8 +24,6 @@ ydata-profiling==4.12.0
 
 # Notes:
 # - `ydata-profiling` may require ipywidgets (not auto-pinned here) to render interactively in notebooks.
-# - If you prefer a stricter, minimal set for deployment, remove the profiling and optional libraries above.
-# - I can produce a fully pinned file including optional packages if you want that next.
 # - To generate y-data the following installs may be needed:
 #   pip install --upgrade ydata-profiling ipython
 #   pip install --upgrade setuptools

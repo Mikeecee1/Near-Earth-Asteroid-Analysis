@@ -67,11 +67,4 @@ Notes:
 - `brightness_class` — categorical (e.g., `dim`, `moderate`, `bright`)
 - `observation_class` — categorical / ordinal (e.g., `single`, `few`, `some`, `many`)
 
-Notes:
-- The class columns are human-friendly categorical bins created during modelling preprocessing. If you need numeric ordinal encodings (0..N) or one-hot encodings for model input, let me know and I can export a version with encodings applied.
 
----
-
-If you'd like, I can also:
-- produce exact pandas dtypes for each CSV (quick dtype report), or
-- add a small snippet showing how to load each CSV and print dtypes (for reproducibility).
